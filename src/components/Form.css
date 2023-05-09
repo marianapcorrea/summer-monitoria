@@ -1,0 +1,24 @@
+h2 {
+  color: #2fc18c;
+  display: block;
+  font-family: Epilogue , sans-serif;
+  font-weight: 800;
+}
+
+label {
+  display: block;
+  margin: 1rem;
+}
+
+input, textarea {
+  display: block;
+  margin-top: 3rem;
+}
+
+.borderBottom {
+  border-bottom: 1px solid black;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+}
+

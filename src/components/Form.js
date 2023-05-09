@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './Form.css';
 
 export default class Form extends Component {
   render() {
@@ -22,6 +23,7 @@ export default class Form extends Component {
           <label htmlFor="name">
             Nome
             <input
+              className="borderBottom"
               id="name"
               type="text"
               data-testid="name-input"
@@ -32,6 +34,8 @@ export default class Form extends Component {
           <label htmlFor="description">
             Descrição
             <input
+              className="borderBottom"
+
               id="description"
               type="textarea"
               data-testid="description-input"

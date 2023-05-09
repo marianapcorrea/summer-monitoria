@@ -2,6 +2,7 @@ import React from 'react';
 import Form from './components/Form';
 import './App.css';
 import Card from './components/Card';
+import logo from './logo_tryunfo.png';
 
 class App extends React.Component {
   state = {
@@ -28,12 +29,13 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Tryunfo</h1>
-        <Form onInputChange={ this.onInputChange } />
-        <Card />
-
-      </div>
+      <>
+        <img src={ logo } alt="Tryunfo" />
+        <section className="addCardForm">
+          <Form onInputChange={ this.onInputChange } />
+          <Card />
+        </section>
+      </>
     );
   }
 }
