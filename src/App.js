@@ -14,6 +14,26 @@ class App extends React.Component {
     cardImage: '',
     cardRare: '',
     cardTrunfo: 'false',
+    isSaveButtonDisabled: true
+    ,
+  };
+
+  toggleSaveButtonStatus = () => {
+    const maxIndv = 90;
+    const maxSum = 210;
+    const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3,
+      cardImage, cardRare } = this.state;
+    if (cardName
+      && cardDescription
+      && cardImage
+      && cardRare
+      && (Number(cardAttr1) >= 0 && Number(cardAttr1) <= maxIndv)
+          && (Number(cardAttr2) >= 0 && Number(cardAttr2) <= maxIndv)
+          && (Number(cardAttr3) >= 0 && Number(cardAttr3) <= maxIndv)
+          && (Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3)
+          <= maxSum)) {
+      return false;
+    }
   };
 
   onInputChange = ({ target }) => {
