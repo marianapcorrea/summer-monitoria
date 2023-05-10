@@ -4,18 +4,10 @@ import './Form.css';
 
 export default class Form extends Component {
   render() {
-    const {
-      cardName,
-      cardDescription,
-      cardAttr1,
-      cardAttr2,
-      cardAttr3,
-      cardImage,
-      cardRare,
-      cardTrunfo,
-      isSaveButtonDisabled,
-      onInputChange,
-      onSaveButtonClick } = this.props;
+    const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3,
+      cardImage, cardRare, cardTrunfo, hasTrunfo, isSaveButtonDisabled,
+      onInputChange, onSaveButtonClick } = this.props;
+    console.log(hasTrunfo);
     return (
       <>
         <h2>ADICIONE NOVA CARTA</h2>
@@ -25,48 +17,53 @@ export default class Form extends Component {
             <input
               className="borderBottom"
               id="name"
+              name="cardName"
               type="text"
               data-testid="name-input"
-              value={ cardName }
               onChange={ onInputChange }
+              value={ cardName }
             />
           </label>
           <label htmlFor="description">
             Descrição
             <input
               className="borderBottom"
-
               id="description"
+              name="cardDescription"
               type="textarea"
               data-testid="description-input"
+              rows="5"
               value={ cardDescription }
               onChange={ onInputChange }
             />
           </label>
-          <label htmlFor="attr1">
+          <label htmlFor="Attr1">
             Attr01
             <input
-              id="attr1"
+              id="Attr1"
+              name="cardAttr1"
               type="number"
               data-testid="attr1-input"
               value={ cardAttr1 }
               onChange={ onInputChange }
             />
           </label>
-          <label htmlFor="attr2">
+          <label htmlFor="Attr2">
             Attr02
             <input
-              id="attr2"
+              id="Attr2"
+              name="cardAttr2"
               type="number"
               data-testid="attr2-input"
               value={ cardAttr2 }
               onChange={ onInputChange }
             />
           </label>
-          <label htmlFor="attr3">
+          <label htmlFor="Attr3">
             Attr03
             <input
-              id="attr3"
+              id="Attr3"
+              name="cardAttr3"
               type="number"
               data-testid="attr3-input"
               value={ cardAttr3 }
@@ -77,6 +74,7 @@ export default class Form extends Component {
             Imagem
             <input
               id="image"
+              name="cardImage"
               type="text"
               data-testid="image-input"
               value={ cardImage }
@@ -88,27 +86,25 @@ export default class Form extends Component {
             <select
               type="select"
               id="rarity"
+              name="cardRare"
               data-testid="rare-input"
               value={ cardRare }
               onChange={ onInputChange }
             >
               <option
                 value="normal"
-                onChange={ onInputChange }
               >
                 Normal
 
               </option>
               <option
                 value="raro"
-                onChange={ onInputChange }
               >
                 Raro
 
               </option>
               <option
                 value="muito raro"
-                onChange={ onInputChange }
               >
                 Muito Raro
 
@@ -119,6 +115,7 @@ export default class Form extends Component {
             Super Trybe Trunfo
             <input
               id="trunfo"
+              name="cardTrunfo"
               type="checkbox"
               data-testid="trunfo-input"
               checked={ cardTrunfo }
@@ -151,6 +148,7 @@ Form.propTypes = {
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
+  hasTrunfo: PropTypes.bool.isRequired,
   isSaveButtonDisabled: PropTypes.bool.isRequired,
   onInputChange: PropTypes.func.isRequired,
   onSaveButtonClick: PropTypes.func.isRequired,

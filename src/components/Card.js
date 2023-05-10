@@ -12,17 +12,18 @@ export default class Card extends Component {
       cardImage,
       cardRare,
       cardTrunfo,
+      onInputChange,
     } = this.props;
     return (
       <section>
-        <h3 data-testid="name-card">{cardName}</h3>
+        <h3 data-testid="name-card" onChange={ onInputChange }>{cardName}</h3>
         <img src={ cardImage } alt={ cardName } data-testid="image-card" />
         <p data-testid="description-card">{cardDescription}</p>
         <p data-testid="attr1-card">{cardAttr1}</p>
         <p data-testid="attr2-card">{cardAttr2}</p>
         <p data-testid="attr3-card">{cardAttr3}</p>
         <p data-testid="rare-card">{cardRare}</p>
-        {cardTrunfo === true && <span data-testid="trunfo-card">Super Trunfo</span>}
+        {cardTrunfo && <span data-testid="trunfo-card">Super Trunfo</span>}
 
       </section>
     );
@@ -39,5 +40,6 @@ Card.propTypes = {
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
+  onInputChange: PropTypes.func.isRequired,
 
 };

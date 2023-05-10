@@ -13,18 +13,15 @@ class App extends React.Component {
     cardAttr3: '',
     cardImage: '',
     cardRare: '',
-    cardTrunfo: false,
-    hasTrunfo: false,
-    isSaveButtonDisabled: true,
+    cardTrunfo: 'false',
   };
 
   onInputChange = ({ target }) => {
-    const { name, value } = target;
-
-    this.setState((prev) => ({
-      ...prev,
+    const { name } = target;
+    const value = target.type === 'checked' ? target.checked : target.value;
+    this.setState({
       [name]: value,
-    }));
+    });
   };
 
   render() {
@@ -32,8 +29,13 @@ class App extends React.Component {
       <>
         <img src={ logo } alt="Tryunfo" />
         <section className="addCardForm">
-          <Form onInputChange={ this.onInputChange } />
-          <Card />
+          <Form
+            { ...this.state }
+            onInputChange={ this.onInputChange }
+          />
+          <Card
+            { ...this.state }
+          />
         </section>
       </>
     );
