@@ -8,13 +8,13 @@ class App extends React.Component {
   state = {
     cardName: '',
     cardDescription: '',
-    cardAttr1: '',
-    cardAttr2: '',
-    cardAttr3: '',
+    cardAttr1: 0,
+    cardAttr2: 0,
+    cardAttr3: 0,
     cardImage: '',
     cardRare: 'normal',
     cardTrunfo: false,
-
+    cardList: [],
   };
 
   toggleSaveButtonStatus = () => {
@@ -38,6 +38,25 @@ class App extends React.Component {
     return true;
   };
 
+  onSaveButtonClick = (event) => {
+    event.preventDefault();
+    /* const { cardName, cardDescription,
+      cardAttr1, cardAttr2, cardAttr3,
+      cardImage, cardRare, cardTrunfo } = this.state; */
+    const newCard = { ...this.state };
+    this.setState((prev) => ({
+      cardList: [...prev.cardList, newCard],
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: 0,
+      cardAttr2: 0,
+      cardAttr3: 0,
+      cardImage: '',
+      cardRare: 'normal',
+      cardTrunfo: false,
+    }));
+  };
+
   onInputChange = ({ target }) => {
     const { name } = target;
     const value = target.type === 'checked' ? target.checked : target.value;
@@ -55,6 +74,7 @@ class App extends React.Component {
             { ...this.state }
             isSaveButtonDisabled={ this.toggleSaveButtonStatus() }
             onInputChange={ this.onInputChange }
+            onSaveButtonClick={ this.onSaveButtonClick }
           />
           <Card
             { ...this.state }
