@@ -12,10 +12,9 @@ class App extends React.Component {
     cardAttr2: '',
     cardAttr3: '',
     cardImage: '',
-    cardRare: '',
-    cardTrunfo: 'false',
-    isSaveButtonDisabled: true
-    ,
+    cardRare: 'normal',
+    cardTrunfo: false,
+
   };
 
   toggleSaveButtonStatus = () => {
@@ -23,17 +22,20 @@ class App extends React.Component {
     const maxSum = 210;
     const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3,
       cardImage, cardRare } = this.state;
-    if (cardName
-      && cardDescription
-      && cardImage
-      && cardRare
-      && (Number(cardAttr1) >= 0 && Number(cardAttr1) <= maxIndv)
+    if (
+      cardName !== ''
+      && cardDescription !== ''
+      && cardImage !== ''
+      && cardRare !== ''
+       && (Number(cardAttr1) >= 0 && Number(cardAttr1) <= maxIndv)
           && (Number(cardAttr2) >= 0 && Number(cardAttr2) <= maxIndv)
           && (Number(cardAttr3) >= 0 && Number(cardAttr3) <= maxIndv)
           && (Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3)
           <= maxSum)) {
+      console.log('works');
       return false;
     }
+    return true;
   };
 
   onInputChange = ({ target }) => {
@@ -51,6 +53,7 @@ class App extends React.Component {
         <section className="addCardForm">
           <Form
             { ...this.state }
+            isSaveButtonDisabled={ this.toggleSaveButtonStatus() }
             onInputChange={ this.onInputChange }
           />
           <Card
