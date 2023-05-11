@@ -22,8 +22,8 @@ class App extends React.Component {
     const maxSum = 210;
     const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3,
       cardImage, cardRare } = this.state;
-    if (
-      cardName !== ''
+
+    return !((cardName !== ''
       && cardDescription !== ''
       && cardImage !== ''
       && cardRare !== ''
@@ -31,11 +31,7 @@ class App extends React.Component {
           && (Number(cardAttr2) >= 0 && Number(cardAttr2) <= maxIndv)
           && (Number(cardAttr3) >= 0 && Number(cardAttr3) <= maxIndv)
           && (Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3)
-          <= maxSum)) {
-      console.log('works');
-      return false;
-    }
-    return true;
+          <= maxSum)));
   };
 
   onSaveButtonClick = (event) => {

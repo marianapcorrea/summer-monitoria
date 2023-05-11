@@ -3,12 +3,17 @@ import PropTypes from 'prop-types';
 import './Form.css';
 
 export default class Form extends Component {
+  checkTrunfoStatus = (cardList) => {
+    cardList.find(({ hasTrunfo }) => hasTrunfo === true);
+  };
+
   render() {
     const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3,
       cardImage, cardRare, cardTrunfo, hasTrunfo, isSaveButtonDisabled,
-      onInputChange, onSaveButtonClick } = this.props;
+      onInputChange, onSaveButtonClick, cardList } = this.props;
 
-    console.log(hasTrunfo);
+    console.log(this.checkTrunfoStatus(cardList));
+    console.log(cardList);
     return (
       <>
         <h2>ADICIONE NOVA CARTA</h2>
