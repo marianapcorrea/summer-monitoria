@@ -14,6 +14,7 @@ class App extends React.Component {
     cardImage: '',
     cardRare: 'normal',
     cardTrunfo: false,
+    hasTrunfo: false,
     cardList: [],
   };
 
@@ -34,11 +35,14 @@ class App extends React.Component {
           <= maxSum)));
   };
 
+  handleCheckboxChange = ({ target }) => {
+    const cardTrunfo = !!target.checked; // Converte para um valor booleano
+    this.setState({ cardTrunfo });
+    this.setState({ hasTrunfo: true });
+  };
+
   onSaveButtonClick = (event) => {
     event.preventDefault();
-    /* const { cardName, cardDescription,
-      cardAttr1, cardAttr2, cardAttr3,
-      cardImage, cardRare, cardTrunfo } = this.state; */
     const newCard = { ...this.state };
     this.setState((prev) => ({
       cardList: [...prev.cardList, newCard],
@@ -52,6 +56,12 @@ class App extends React.Component {
       cardTrunfo: false,
     }));
   };
+
+  /*   checkTrunfo = ({target}) => {
+   this.setState({
+    hasTrunfo: true
+   })
+  } */
 
   onInputChange = ({ target }) => {
     const { name } = target;
@@ -71,6 +81,7 @@ class App extends React.Component {
             isSaveButtonDisabled={ this.toggleSaveButtonStatus() }
             onInputChange={ this.onInputChange }
             onSaveButtonClick={ this.onSaveButtonClick }
+            handleCheckboxChange={ this.handleCheckboxChange }
           />
           <Card
             { ...this.state }

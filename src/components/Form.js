@@ -3,16 +3,15 @@ import PropTypes from 'prop-types';
 import './Form.css';
 
 export default class Form extends Component {
-  checkTrunfoStatus = (cardList) => {
-    cardList.find(({ hasTrunfo }) => hasTrunfo === true);
-  };
-
+/*   checkTrunfoStatus = (cardList) => cardList
+    .find(({ cardTrunfo }) => (cardTrunfo === 'on'));
+ */
   render() {
     const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3,
       cardImage, cardRare, cardTrunfo, hasTrunfo, isSaveButtonDisabled,
-      onInputChange, onSaveButtonClick, cardList } = this.props;
+      onInputChange, onSaveButtonClick, cardList, handleCheckboxChange } = this.props;
 
-    console.log(this.checkTrunfoStatus(cardList));
+    // console.log(this.checkTrunfoStatus(cardList));
     console.log(cardList);
     return (
       <>
@@ -117,17 +116,23 @@ export default class Form extends Component {
               </option>
             </select>
           </label>
-          <label htmlFor="trunfo">
-            Super Trybe Trunfo
-            <input
-              id="trunfo"
-              name="cardTrunfo"
-              type="checkbox"
-              data-testid="trunfo-input"
-              checked={ cardTrunfo }
-              onChange={ onInputChange }
-            />
-          </label>
+          {hasTrunfo === false ? (
+            <label htmlFor="trunfo">
+              Super Trybe Trunfo
+              <input
+                id="trunfo"
+                name="cardTrunfo"
+                type="checkbox"
+                data-testid="trunfo-input"
+                checked={ cardTrunfo }
+                onChange={ handleCheckboxChange }
+              />
+
+            </label>)
+            : (
+              <p htmlFor="trunfo" data-testid="trunfo-input">
+                Você já tem um Super Trunfo em seu baralho
+              </p>)}
           <button
             type="submit"
             data-testid="save-button"
@@ -145,7 +150,6 @@ export default class Form extends Component {
 }
 
 Form.propTypes = {
-
   cardName: PropTypes.string.isRequired,
   cardDescription: PropTypes.string.isRequired,
   cardAttr1: PropTypes.string.isRequired,
@@ -158,5 +162,20 @@ Form.propTypes = {
   isSaveButtonDisabled: PropTypes.bool.isRequired,
   onInputChange: PropTypes.func.isRequired,
   onSaveButtonClick: PropTypes.func.isRequired,
+  handleCheckboxChange: PropTypes.func.isRequired,
+  cardList: PropTypes.arrayOf(
+    PropTypes.shape({
+      cardName: PropTypes.string,
+      cardDescription: PropTypes.string,
+      cardAttr1: PropTypes.string,
+      cardAttr2: PropTypes.string,
+      cardAttr3: PropTypes.string,
+      cardImage: PropTypes.string,
+      cardRare: PropTypes.string,
+      cardTrunfo: PropTypes.bool,
+      hasTrunfo: PropTypes.bool,
+      isSaveButtonDisabled: PropTypes.bool,
+    }),
+  ).isRequired,
 
 };
