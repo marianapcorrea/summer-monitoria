@@ -125,7 +125,7 @@ export default class Form extends Component {
 
             </label>)
             : (
-              <p htmlFor="trunfo" data-testid="trunfo-input">
+              <p data-testid="trunfo-card">
                 Você já tem um Super Trunfo em seu baralho
               </p>)}
           <button
@@ -147,9 +147,9 @@ export default class Form extends Component {
 Form.propTypes = {
   cardName: PropTypes.string.isRequired,
   cardDescription: PropTypes.string.isRequired,
-  cardAttr1: PropTypes.number.isRequired,
-  cardAttr2: PropTypes.number.isRequired,
-  cardAttr3: PropTypes.number.isRequired,
+  cardAttr1: PropTypes.string.isRequired,
+  cardAttr2: PropTypes.string.isRequired,
+  cardAttr3: PropTypes.string.isRequired,
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
