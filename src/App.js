@@ -8,14 +8,15 @@ class App extends React.Component {
   state = {
     cardName: '',
     cardDescription: '',
-    cardAttr1: 0,
-    cardAttr2: 0,
-    cardAttr3: 0,
+    cardAttr1: 90,
+    cardAttr2: 90,
+    cardAttr3: 30,
     cardImage: '',
     cardRare: 'normal',
     cardTrunfo: false,
     hasTrunfo: false,
     cardList: [],
+    showDeck: false,
   };
 
   toggleSaveButtonStatus = () => {
@@ -24,7 +25,8 @@ class App extends React.Component {
     const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3,
       cardImage, cardRare } = this.state;
 
-    return !((cardName !== ''
+    return !((
+      cardName !== ''
       && cardDescription !== ''
       && cardImage !== ''
       && cardRare !== ''
@@ -37,8 +39,7 @@ class App extends React.Component {
 
   handleCheckboxChange = ({ target }) => {
     const cardTrunfo = !!target.checked; // Converte para um valor booleano
-    this.setState({ cardTrunfo });
-    this.setState({ hasTrunfo: true });
+    this.setState({ cardTrunfo, hasTrunfo: true });
   };
 
   onSaveButtonClick = (event) => {
@@ -48,30 +49,26 @@ class App extends React.Component {
       cardList: [...prev.cardList, newCard],
       cardName: '',
       cardDescription: '',
-      cardAttr1: 0,
-      cardAttr2: 0,
-      cardAttr3: 0,
+      cardAttr1: 70,
+      cardAttr2: 70,
+      cardAttr3: 70,
       cardImage: '',
       cardRare: 'normal',
       cardTrunfo: false,
+      showDeck: true,
     }));
   };
 
-  /*   checkTrunfo = ({target}) => {
-   this.setState({
-    hasTrunfo: true
-   })
-  } */
-
   onInputChange = ({ target }) => {
     const { name } = target;
-    const value = target.type === 'checked' ? target.checked : target.value;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({
       [name]: value,
     });
   };
 
   render() {
+    const { cardList, showDeck } = this.state;
     return (
       <>
         <img src={ logo } alt="Tryunfo" />
@@ -85,7 +82,12 @@ class App extends React.Component {
           />
           <Card
             { ...this.state }
+
           />
+        </section>
+        <section>
+          {showDeck && cardList
+            .map((card) => <Card key={ card.cardName } { ...this.state } />)}
         </section>
       </>
     );

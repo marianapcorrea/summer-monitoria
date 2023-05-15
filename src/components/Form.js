@@ -3,16 +3,11 @@ import PropTypes from 'prop-types';
 import './Form.css';
 
 export default class Form extends Component {
-/*   checkTrunfoStatus = (cardList) => cardList
-    .find(({ cardTrunfo }) => (cardTrunfo === 'on'));
- */
   render() {
     const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3,
       cardImage, cardRare, cardTrunfo, hasTrunfo, isSaveButtonDisabled,
-      onInputChange, onSaveButtonClick, cardList, handleCheckboxChange } = this.props;
+      onInputChange, onSaveButtonClick, handleCheckboxChange } = this.props;
 
-    // console.log(this.checkTrunfoStatus(cardList));
-    console.log(cardList);
     return (
       <>
         <h2>ADICIONE NOVA CARTA</h2>
@@ -116,7 +111,7 @@ export default class Form extends Component {
               </option>
             </select>
           </label>
-          {hasTrunfo === false ? (
+          {!hasTrunfo ? (
             <label htmlFor="trunfo">
               Super Trybe Trunfo
               <input
@@ -152,9 +147,9 @@ export default class Form extends Component {
 Form.propTypes = {
   cardName: PropTypes.string.isRequired,
   cardDescription: PropTypes.string.isRequired,
-  cardAttr1: PropTypes.string.isRequired,
-  cardAttr2: PropTypes.string.isRequired,
-  cardAttr3: PropTypes.string.isRequired,
+  cardAttr1: PropTypes.number.isRequired,
+  cardAttr2: PropTypes.number.isRequired,
+  cardAttr3: PropTypes.number.isRequired,
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
@@ -163,19 +158,5 @@ Form.propTypes = {
   onInputChange: PropTypes.func.isRequired,
   onSaveButtonClick: PropTypes.func.isRequired,
   handleCheckboxChange: PropTypes.func.isRequired,
-  cardList: PropTypes.arrayOf(
-    PropTypes.shape({
-      cardName: PropTypes.string,
-      cardDescription: PropTypes.string,
-      cardAttr1: PropTypes.string,
-      cardAttr2: PropTypes.string,
-      cardAttr3: PropTypes.string,
-      cardImage: PropTypes.string,
-      cardRare: PropTypes.string,
-      cardTrunfo: PropTypes.bool,
-      hasTrunfo: PropTypes.bool,
-      isSaveButtonDisabled: PropTypes.bool,
-    }),
-  ).isRequired,
 
 };
