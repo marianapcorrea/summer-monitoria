@@ -39,14 +39,29 @@ class App extends React.Component {
 
   onSaveButtonClick = (event) => {
     event.preventDefault();
-    const newCard = { ...this.state };
+    const { cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo } = this.state;
+    const newCard = { cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo };
     this.setState((prev) => ({
       cardList: [...prev.cardList, newCard],
       cardName: '',
       cardDescription: '',
-      cardAttr1: 0,
-      cardAttr2: 0,
-      cardAttr3: 0,
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
       cardImage: '',
       cardRare: 'normal',
       cardTrunfo: false,
@@ -86,7 +101,7 @@ class App extends React.Component {
         </section>
         <section>
           {showDeck && cardList
-            .map((card) => <Card key={ card.cardName } { ...this.state } />)}
+            .map((card) => <Card key={ card.cardName } { ...card } />)}
         </section>
       </>
     );
