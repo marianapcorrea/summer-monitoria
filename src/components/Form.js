@@ -6,7 +6,7 @@ export default class Form extends Component {
   render() {
     const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3,
       cardImage, cardRare, cardTrunfo, hasTrunfo, isSaveButtonDisabled,
-      onInputChange, onSaveButtonClick, handleCheckboxChange } = this.props;
+      onInputChange, onSaveButtonClick } = this.props;
 
     return (
       <>
@@ -120,7 +120,7 @@ export default class Form extends Component {
                 type="checkbox"
                 data-testid="trunfo-input"
                 checked={ cardTrunfo }
-                onChange={ handleCheckboxChange }
+                onChange={ onInputChange }
               />
 
             </label>)
@@ -157,6 +157,5 @@ Form.propTypes = {
   isSaveButtonDisabled: PropTypes.bool.isRequired,
   onInputChange: PropTypes.func.isRequired,
   onSaveButtonClick: PropTypes.func.isRequired,
-  handleCheckboxChange: PropTypes.func.isRequired,
 
 };
