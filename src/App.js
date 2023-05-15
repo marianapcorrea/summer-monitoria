@@ -38,7 +38,6 @@ class App extends React.Component {
   };
 
   handleCheckboxChange = ({ target }) => {
-    // target.checked;
     const cardTrunfo = !!target.checked; // Converte para um valor booleano
     this.setState({ cardTrunfo, hasTrunfo: true });
   };
@@ -56,15 +55,16 @@ class App extends React.Component {
       cardImage: '',
       cardRare: 'normal',
       cardTrunfo: false,
-      hasTrunfo: false,
+      // hasTrunfo: false,
       showDeck: true,
     }));
   };
 
   onInputChange = ({ target }) => {
     const { name } = target;
-    const value = target.type === 'checkbox'
-      ? handleCheckboxChange(target) : target.value;
+    const value = target.type === 'checked'
+      ? target.checked
+      && this.handleCheckboxChange(target) : target.value;
     this.setState({
       [name]: value,
     });
@@ -81,7 +81,7 @@ class App extends React.Component {
             isSaveButtonDisabled={ this.toggleSaveButtonStatus() }
             onInputChange={ this.onInputChange }
             onSaveButtonClick={ this.onSaveButtonClick }
-            handleCheckboxChange={ this.handleCheckboxChange }
+            // handleCheckboxChange={ this.handleCheckboxChange }
           />
           <Card
             { ...this.state }
