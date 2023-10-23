@@ -14,5 +14,13 @@ img {
   border-radius: 20px;
   display: flex;
   flex-direction: column;
+  margin: 0 0  2rem;
   padding: 2.5rem;
+}
+
+h2 {
+  color: #2fc18c;
+  display: block;
+  font-family: Epilogue , sans-serif;
+  font-weight: 800;
 }
