@@ -3,6 +3,7 @@ import Form from './components/Form';
 import './App.css';
 import Card from './components/Card';
 import logo from './logo_tryunfo.png';
+import Rules from './components/Rules';
 
 class App extends React.Component {
   state = {
@@ -102,6 +103,9 @@ class App extends React.Component {
         <section>
           {showDeck && cardList
             .map((card) => <Card key={ card.cardName } { ...card } />)}
+        </section>
+        <section className="addCardForm">
+          <Rules/>
         </section>
       </>
     );
